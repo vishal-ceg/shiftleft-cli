@@ -12,9 +12,9 @@ package com.csw.shiftleft.cli.impl;
  */
 public class ScannerFactory {
     
-    public static Scanner create(){
+    public static Scanner create(ConfigurationIn cofig){
         // to-do , need to handle scanner based on type
-        return new FindSecBug();
+        return new DependencyCheck(cofig);
     }
     
 }

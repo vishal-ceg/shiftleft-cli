@@ -45,8 +45,8 @@ public class ShellCmdExecutor {
             }
 
             if (exitVal == 0) {
-                System.out.println("Success!");
                 System.out.println(output);
+                System.out.println("Success!");
             } else {
                 System.out.println("Error");
             }
@@ -57,10 +57,10 @@ public class ShellCmdExecutor {
             e.printStackTrace();
         }
     }
-    
-    private static boolean isWindows(){
-         return System.getProperty("os.name")
-                    .toLowerCase().startsWith("windows");
+
+    private static boolean isWindows() {
+        return System.getProperty("os.name")
+                .toLowerCase().startsWith("windows");
     }
 
 }

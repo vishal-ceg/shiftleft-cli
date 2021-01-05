@@ -9,17 +9,17 @@ package com.csw.shiftleft.cli.impl;
  *
  * @author Vishal
  */
-public class FindSecBug extends Scanner {
+public class DependencyCheck extends Scanner {
 
-    public FindSecBug(ConfigurationIn cofig) {
+    public DependencyCheck(ConfigurationIn cofig) {
         super(cofig);
     }
-
+  
     @Override
     public void scan() throws Exception {
         cofig.projectRoot = cofig.projectRoot == null ? System.getProperty("user.dir") : cofig.projectRoot;
         System.out.println(cofig.projectRoot);
-        String finalArgs = "docker run -v " + cofig.projectRoot + ":/workdir/scan findsecbugs";
+        String finalArgs = "docker run -v " + cofig.projectRoot + ":/src --volume "+cofig.projectRoot+"\\data:/usr/share/dependency-check/data owasp --project project_name";
         new ShellCmdExecutor().exe(finalArgs);
     }
 

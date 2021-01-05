@@ -10,12 +10,8 @@ package com.csw.shiftleft.cli.impl;
  *
  * @author Vishal
  */
-public abstract class Scanner {
-     protected final ConfigurationIn cofig;
-     
-     public Scanner(ConfigurationIn cofig){
-         this.cofig = cofig;
-     }
+public class ConfigurationIn {
+    public String projectRoot;
+    public ScannerType scannerType = ScannerType.SAST ;
     
-    public abstract void scan() throws Exception;
 }
