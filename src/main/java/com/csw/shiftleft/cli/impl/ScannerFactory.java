@@ -13,8 +13,13 @@ package com.csw.shiftleft.cli.impl;
 public class ScannerFactory {
     
     public static Scanner create(ConfigurationIn cofig){
-        // to-do , need to handle scanner based on type
-        return new DependencyCheck(cofig);
-    }
-    
+        switch(cofig.scannerType){
+            case SAST:
+                return new FindSecBug(cofig);
+            case DAST:
+                return new DependencyCheck(cofig);
+            default:
+                throw new RuntimeException("Not handled-"+cofig.scannerType);
+        }
+    } 
 }

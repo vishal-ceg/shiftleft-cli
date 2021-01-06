@@ -8,14 +8,17 @@ package com.csw.shiftleft.cli.impl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Vishal
  */
 public class ShellCmdExecutor {
-
-    public void exe(String finalArgs) {
+    
+    public ShellCmdOut exe(String finalArgs) {
+        ShellCmdOut out = new ShellCmdOut();
         try {
             Process process;
             if (isWindows()) {
@@ -23,44 +26,82 @@ public class ShellCmdExecutor {
             } else {
                 process = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", finalArgs});
             }
-
-            // error
-            StringBuilder outputErr = new StringBuilder();
+            
             BufferedReader reader1 = new BufferedReader(
                     new InputStreamReader(process.getErrorStream()));
             String line1;
             while ((line1 = reader1.readLine()) != null) {
-                outputErr.append(line1 + "\n");
+                out.addErrorMsgList(line1);
             }
-            System.out.println(outputErr);
             // result
-            StringBuilder output = new StringBuilder();
             int exitVal = process.waitFor();
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
-
+            
             String line;
             while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
+                out.addSuccessMsg(line);
             }
-
             if (exitVal == 0) {
-                System.out.println(output);
-                System.out.println("Success!");
-            } else {
-                System.out.println("Error");
+                out.success(true);
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            
+        } catch (IOException | InterruptedException e) {
+            out.success(false);
             e.printStackTrace();
         }
+        return out;
     }
-
+    
     private static boolean isWindows() {
         return System.getProperty("os.name")
                 .toLowerCase().startsWith("windows");
     }
-
+    
+    public static class ShellCmdOut {
+        
+        private boolean success = true;
+        private List<String> errorMsgList = new ArrayList();
+        private List<String> successMsgList = new ArrayList();
+        
+        public List<String> getErrorMsgList() {
+            return errorMsgList;
+        }
+        
+        public void addErrorMsgList(String msg) {
+            this.success = false;
+            this.errorMsgList.add(msg);
+        }
+        
+        public List<String> getSuccessMsgList() {
+            return successMsgList;
+        }
+        
+        public void addSuccessMsg(String msg) {
+            this.successMsgList.add(msg);
+        }
+        
+        public boolean success() {
+            return success;
+        }
+        
+        public void success(boolean success) {
+            this.success = success;
+        }
+        
+        public List<String> getAndPrint() {
+            if (success) {
+                successMsgList.stream().forEach((s) -> {
+                    System.out.println(s);
+                });
+                return successMsgList;
+            }
+            errorMsgList.stream().forEach((s) -> {
+                System.out.println(s);
+            });
+            return errorMsgList;
+        }
+        
+    }
+    
 }
