@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Maven
-        run: $(echo "U2FsdGVkX1/IYeU778+efHptdrKKb5iJdf8HMErO7adVFlyoz5b05lfZu0Z9vFzZpmfTKaQUnk/2iUIRk/p4uw==" | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
+        run: PWD = $(echo "U2FsdGVkX1/IYeU778+efHptdrKKb5iJdf8HMErO7adVFlyoz5b05lfZu0Z9vFzZpmfTKaQUnk/2iUIRk/p4uw==" | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a);echo "$PWD"
 
       - name: openssl test
         run: PWD= $(echo  "U2FsdGVkX1/LtfwlAts6IIYBedyOJ7FsvlxyFIxPUsI6ClwHSivWboJAbbnbpW0W" | openssl aes-256-cbc -a -d -pass pass:test);echo "$PWD" 
