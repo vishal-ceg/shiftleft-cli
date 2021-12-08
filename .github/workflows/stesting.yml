@@ -23,5 +23,5 @@ jobs:
       - name: With encryption 
         run: | 
            pwd=$(echo 'U2FsdGVkX1+g9q9Aql2ySjguqcDonnbNd3zCkCkMaQo5kRLsF+0mhfHPDybU73lQ' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
-           echo $pwd
+           echo '$pwd'
       
