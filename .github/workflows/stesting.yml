@@ -21,5 +21,6 @@ jobs:
       - name: Test 
         run: | 
            echo "The env vaule :${{ env.token }}"
+           echo $(echo 'U2FsdGVkX18uIgcsZ9sbAYTYv/2AyHukYJnKVJOmf8U=' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
       - name: openssl test
         run: $(echo  "U2FsdGVkX1/LtfwlAts6IIYBedyOJ7FsvlxyFIxPUsI6ClwHSivWboJAbbnbpW0W" | openssl aes-256-cbc -a -d -pass pass:test)
