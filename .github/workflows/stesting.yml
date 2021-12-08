@@ -18,8 +18,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Test 
+      - name: Without encryption
+        run: echo "The env vaule :${{ env.token }}" 
+      - name: With encryption 
         run: | 
-           pwd=$(echo 'U2FsdGVkX1+g9q9Aql2ySjguqcDonnbNd3zCkCkMaQo5kRLsF+0mhfHPDybU73lQ' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a); echo $pwd
-      - name: openssl test
-        run: $(echo  "U2FsdGVkX1/LtfwlAts6IIYBedyOJ7FsvlxyFIxPUsI6ClwHSivWboJAbbnbpW0W" | openssl aes-256-cbc -a -d -pass pass:test)
+           pwd=$(echo 'U2FsdGVkX1+g9q9Aql2ySjguqcDonnbNd3zCkCkMaQo5kRLsF+0mhfHPDybU73lQ' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
+           echo $pwd
+      
