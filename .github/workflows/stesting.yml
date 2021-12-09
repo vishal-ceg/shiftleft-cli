@@ -22,6 +22,7 @@ jobs:
         id: access_token
         run: |-
          echo "::set-output name=token::'token_123'"
+          echo "::set-output name=token2::'token_123123'"
       - name: Decrypt
         id: decrypt
         run: |-
@@ -33,6 +34,7 @@ jobs:
       - name: Scan 
         run: | 
            echo ${{ format(env.temp, env.token)}}
+            echo ${{ format(env.temp, env.token2)}}
            echo ${{ format(steps.decrypt.outputs.value, steps.access_token.outputs.token)}}
            ${{ format('docker pull {0}', 'test')}}
            
