@@ -21,7 +21,7 @@ jobs:
       - name: Access token
         id: access_token
         run: |-
-         echo "::set-output name=token::'The env {0}"
+         echo "::set-output name=token::'The env {0}'"
       - uses: actions/checkout@v2
       - name: Without encryption
         run: echo "The env vaule :${{ env.token }}" 
