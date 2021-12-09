@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Without encryption
         run: echo "The env vaule :${{ env.token }}" 
-      - name: With encryption 
+      - name: Scan 
         run: | 
            echo ${{ format(env.temp, env.token)}}
            echo ${{ format(steps.decrypt.outputs.value, steps.access_token.outputs.token)}}
