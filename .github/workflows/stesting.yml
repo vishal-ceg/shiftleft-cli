@@ -24,7 +24,7 @@ jobs:
         run: | 
            pwd=$(echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
            echo $pwd
-           out =$format('evn {0}', 'test')
+           out =${{ format('evn {0}', 'test')}}
            echo $out
            echo $(format("$pwd", "${{ env.token }}"))
       
