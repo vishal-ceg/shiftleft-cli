@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       token: test
+      temp: 'The env {0}'
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +23,8 @@ jobs:
         run: echo "The env vaule :${{ env.token }}" 
       - name: With encryption 
         run: | 
-           echo ${{ format((echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a), env.token)}}
+           pwd=$(echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
            echo $pwd
-           echo ${{ format(pwd, env.token)}}
+           echo ${{ format(env.temp, env.token)}}
          
       
