@@ -18,6 +18,10 @@ jobs:
       temp: 'The env {0}'
 
     steps:
+      - name: Access token
+        id: access_token
+        run: |-
+         echo "::set-output name=token::'The env {0}"
       - uses: actions/checkout@v2
       - name: Without encryption
         run: echo "The env vaule :${{ env.token }}" 
@@ -26,5 +30,6 @@ jobs:
            pwd=$(echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
            echo $pwd
            echo ${{ format(env.temp, env.token)}}
+           echo ${{ format(steps.access_token.outputs.token, env.token)}}
          
       
