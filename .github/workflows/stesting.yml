@@ -22,6 +22,7 @@ jobs:
         run: echo "The env vaule :${{ env.token }}" 
       - name: With encryption 
         run: | 
-           pwd=$(echo 'U2FsdGVkX1+g9q9Aql2ySjguqcDonnbNd3zCkCkMaQo5kRLsF+0mhfHPDybU73lQ' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
+           pwd=$(echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
            echo $pwd
+           echo format($pwd, ${{ env.token }})
       
