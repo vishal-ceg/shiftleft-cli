@@ -26,7 +26,7 @@ jobs:
       - name: Decrypt
         id: decrypt
         run: |-
-          access_token=$(echo 'U2FsdGVkX1+z4Mqd/FVp8UP5K8nA7g+exIvzV8jxac1jvCgsmCO1AhvW8f4c+x2pMvJsp4TdC/MBF1ziRYEeKJxtjhx3K4NLcngJSJwaeScKAXTkQKNZTrEm4xmH98UfLUDXPsL+g4em3CZ5OS2vrMvkktojXuabKsNPxqt2lfA4ZpnzRpMXl7Mf7FSlk3S4IA2fSSDljULdDKJO0DlH0+boHxH05FB32h2PTvkxnkbk7QTD81pcnVgMsdUEQ+hhYSg13rcthXcJAlf0CqqNtdCD1I6Ly6pomhzasW4Kp+Y=' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
+          access_token=$(echo 'U2FsdGVkX19SvRvgzw5jIPaXSR0fNo9l3ArwdZS0K393ZsNI/cHX7yXcMc08zf+p1JpL8bjCAnnO4ilc+UWI1q0KAp995d0+rCftU7qtnVjhDdRUSQ0k7Yel1r6AobOSwVnDmIBFpsren1FAQwuJ6D1XSPEf4F+PDuNCPc3JGlfRUhBOXjbjTqinX14yU21+JvO+YF8Kr2df0UEr78yjhAWudpWtlCLBQ2XCLgrQr+/WAGaV+wI8TuS8dp5w8r6J' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
           pwd=$(echo 'U2FsdGVkX19PIudeg4cnqxotWnfClLM6EWZLKmE30nplaDWtMPPw9EcEStorbJb0' | openssl enc -d -aes-256-cbc -md sha256 -pass pass:testpass -a)
           echo "::set-output name=value::$pwd"
            echo "::set-output name=access_token::$access_token"
