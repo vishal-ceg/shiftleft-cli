@@ -39,7 +39,7 @@ jobs:
            echo ${{ format(env.temp, steps.access_token.outputs.token2)}}
            echo ${{ format(steps.decrypt.outputs.value, steps.access_token.outputs.token)}}
            echo ${{ format('docker pull {0}', secrets.USER_NAME)}}
-           echo ${{ format(' --data-raw  {userId: {0} password: {1} }', secrets.USER_NAME, steps.access_token.outputs.token)}}
+           echo ${{ format(' --data-raw  userId: {0} password: {1} ', secrets.USER_NAME, steps.access_token.outputs.token)}}
            
          
       
