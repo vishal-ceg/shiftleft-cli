@@ -36,7 +36,7 @@ jobs:
            echo ${{ format(env.temp, env.token)}}
            echo ${{ format(env.temp, steps.access_token.outputs.token2)}}
            echo ${{ format(steps.decrypt.outputs.value, steps.access_token.outputs.token)}}
-           ${{ format('docker pull {0}', secrets.USER_NAME)}}
+           echo ${{ format('docker pull {0}', secrets.USER_NAME)}}
            
          
       
